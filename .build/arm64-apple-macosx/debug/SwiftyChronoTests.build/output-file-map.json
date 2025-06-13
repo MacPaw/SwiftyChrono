@@ -1,0 +1,65 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/master.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/ChronoJSXCTestCase.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/ChronoJSXCTestCase.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/ChronoJSXCTestCase.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/ChronoJSXCTestCase~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/ChronoJSXCTestCase.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/JS/de/TestDE.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestDE.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestDE.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestDE~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestDE.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/JS/en/TestEN.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestEN.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestEN.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestEN~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestEN.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/JS/es/TestES.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestES.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestES.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestES~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestES.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/JS/fr/TestFR.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestFR.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestFR.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestFR~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestFR.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/JS/jp/TestJP.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestJP.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestJP.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestJP~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestJP.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/JS/zh_hans/TestZHHans.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestZHHans.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestZHHans.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestZHHans~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestZHHans.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/JS/zh_hant/testZHHant.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/testZHHant.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/testZHHant.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/testZHHant~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/testZHHant.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/SwiftyChronoTests.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/SwiftyChronoTests.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/SwiftyChronoTests.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/SwiftyChronoTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/SwiftyChronoTests.swiftdeps"
+  },
+  "/Users/ivan/src/MacPaw/SwiftyChrono/Tests/SwiftyChronoTests/TestUtil.swift": {
+    "dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestUtil.d",
+    "object": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestUtil.swift.o",
+    "swiftmodule": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestUtil~partial.swiftmodule",
+    "swift-dependencies": "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoTests.build/TestUtil.swiftdeps"
+  }
+}

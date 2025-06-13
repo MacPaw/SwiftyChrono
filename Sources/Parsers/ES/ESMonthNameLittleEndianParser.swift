@@ -31,7 +31,8 @@ public class ESMonthNameLittleEndianParser: Parser {
         let (matchText, index) = matchTextAndIndex(from: text, andMatchResult: match)
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
-        let month = ES_MONTH_OFFSET[match.string(from: text, atRangeIndex: monthNameGroup).lowercased()]!
+        let monthValue = match.string(from: text, atRangeIndex: monthNameGroup).trimmingCharacters(in: .whitespaces)
+        let month = ES_MONTH_OFFSET[monthValue.lowercased()]!
         
         let day = Int(match.string(from: text, atRangeIndex: dateGroup))!
         

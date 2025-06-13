@@ -27,7 +27,8 @@ public class JPStandardParser: Parser {
         var startMoment = ref
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
-        let month = Int(match.string(from: text, atRangeIndex: monthGroup).hankakuOnlyNumber)!
+        let monthValue = match.string(from: text, atRangeIndex: monthGroup).trimmingCharacters(in: .whitespaces)
+        let month = Int(monthValue.hankakuOnlyNumber)!
         
         let day = Int(match.string(from: text, atRangeIndex: dayGroup).hankakuOnlyNumber)!
         

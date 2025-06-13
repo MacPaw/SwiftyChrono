@@ -27,7 +27,8 @@ public class ENMonthNameParser: Parser {
         let (matchText, index) = matchTextAndIndex(from: text, andMatchResult: match)
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
-        let month = EN_MONTH_OFFSET[match.string(from: text, atRangeIndex: monthNameGroup).lowercased()]!
+        let monthValue = match.string(from: text, atRangeIndex: monthNameGroup).trimmingCharacters(in: .whitespaces)
+        let month = EN_MONTH_OFFSET[monthValue.lowercased()]!
         let day = 1
         
         if match.isNotEmpty(atRangeIndex: yearGroup) {

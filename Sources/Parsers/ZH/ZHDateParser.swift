@@ -37,7 +37,7 @@ public class ZHDateParser: Parser {
         let startMoment = refMoment
         
         //Month
-        let monthString = match.string(from: text, atRangeIndex: monthGroup)
+        let monthString = match.string(from: text, atRangeIndex: monthGroup).trimmingCharacters(in: .whitespaces)
         guard let month = NSRegularExpression.isMatch(forPattern: "\\d+", in: monthString) ? Int(monthString) : ZHStringToNumber(text: monthString) else {
             return nil
         }
