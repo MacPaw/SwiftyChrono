@@ -1,4 +1,0 @@
-module SwiftyChronoPackageTests {
-    header "/Users/ivan/src/MacPaw/SwiftyChrono/.build/arm64-apple-macosx/debug/SwiftyChronoPackageTests.build/SwiftyChronoPackageTests-Swift.h"
-    requires objc
-}
