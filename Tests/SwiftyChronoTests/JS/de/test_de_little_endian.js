@@ -202,6 +202,27 @@ test("Test - Single expression", function() {
         ok(Math.abs(expectDate.getTime() - resultDate.getTime()) < 100000, 'Test result.startDate ' + resultDate +'/' +expectDate)
     }
 
+    var text = "Fri, 13 Jun 2025 08:20:36 GMT";
+    var results = chrono.parse(text, new Date(2020,0,1));
+    ok(results.length == 1, JSON.stringify(results));
+
+    var result = results[0];
+    if (result) {
+        ok(result.index == 0, 'Wrong index');
+        ok(result.text == 'Fri, 13 Jun 2025 08:20:36 GMT', result.text );
+
+        ok(result.start, JSON.stringify(result.start));
+        ok(result.start.get('year') == 2025, 'Test Result - (Year) ' + JSON.stringify(result.start));
+        ok(result.start.get('month') == 6, 'Test Result - (Month) ' + JSON.stringify(result.start));
+        ok(result.start.get('day') == 13, 'Test Result - (Day) ' + JSON.stringify(result.start));
+        ok(result.start.get('hour') == 8, 'Test Result - (Hour) ' + JSON.stringify(result.start));
+        ok(result.start.get('minute') == 20, 'Test Result - (Minute) ' + JSON.stringify(result.start));
+        ok(result.start.get('second') == 36, 'Test Result - (Second) ' + JSON.stringify(result.start));
+
+        var resultDate = result.start.date();
+        var expectDate = new Date(Date.UTC(2025, 6-1, 13, 8, 20, 36));
+        ok(Math.abs(expectDate.getTime() - resultDate.getTime()) < 100000, 'Test result.startDate ' + resultDate +'/' +expectDate);
+    }
 
 });
 
