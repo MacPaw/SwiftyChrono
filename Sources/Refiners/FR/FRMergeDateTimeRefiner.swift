@@ -36,7 +36,7 @@ private func mergeResult(refText text: String, dateResult: ParsedResult, timeRes
     beginDateTime.assign(.second, value: beginTime[.second])
     
     if beginTime.isCertain(component: .meridiem) {
-        beginDateTime.assign(.meridiem, value: beginTime[.meridiem]!)
+        beginDateTime.assign(.meridiem, value: beginTime[.meridiem])
     } else if let meridiem = beginTime[.meridiem], beginDateTime[.meridiem] == nil {
         beginDateTime.imply(.meridiem, to: meridiem)
     }
@@ -58,15 +58,15 @@ private func mergeResult(refText text: String, dateResult: ParsedResult, timeRes
         endDateTime.assign(.second, value: endTime[.second])
         
         if endTime.isCertain(component: .meridiem) {
-            endDateTime.assign(.meridiem, value: endTime[.meridiem]!)
+            endDateTime.assign(.meridiem, value: endTime[.meridiem])
         } else if beginTime[.meridiem] != nil {
             endDateTime.imply(.meridiem, to: endTime[.meridiem])
         }
         
         if dateResult.end == nil && endDateTime.date.timeIntervalSince1970 < beginDateTime.date.timeIntervalSince1970 {
             // Ex. 9pm - 1am
-            if endDateTime.isCertain(component: .day) {
-                endDateTime.assign(.day, value: endDateTime[.day]! + 1)
+            if endDateTime.isCertain(component: .day), let day = endDateTime[.day] {
+                endDateTime.assign(.day, value: day + 1)
             } else if let day = endDateTime[.day] {
                 endDateTime.imply(.day, to: day + 1)
             }

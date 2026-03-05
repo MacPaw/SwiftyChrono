@@ -119,18 +119,18 @@ public class ZHTimeExpressionParser: Parser {
         }
         
         var hourString = match.string(from: text, atRangeIndex: hourGroup)
-        hour = NSRegularExpression.isMatch(forPattern: "\\d+", in: hourString) ? Int(hourString)! : ZHStringToNumber(text: hourString)
-        
+        hour = NSRegularExpression.isMatch(forPattern: "\\d+", in: hourString) ? (Int(hourString) ?? 0) : ZHStringToNumber(text: hourString)
+
         // ----- Minutes
         if match.isNotEmpty(atRangeIndex: minuteGroup) {
             let minuteString = match.string(from: text, atRangeIndex: minuteGroup)
-            
+
             if minuteString == "半" {
                 minute = 30;
             } else if minuteString == "正" || minuteString == "整" {
                 minute = 0;
             } else {
-                minute = NSRegularExpression.isMatch(forPattern: "\\d+", in: minuteString) ? Int(minuteString)! : ZHStringToNumber(text: minuteString)
+                minute = NSRegularExpression.isMatch(forPattern: "\\d+", in: minuteString) ? (Int(minuteString) ?? 0) : ZHStringToNumber(text: minuteString)
             }
         } else if hour > 100 {
             minute = hour % 100
@@ -282,7 +282,7 @@ public class ZHTimeExpressionParser: Parser {
         // ----- Second
         if match.isNotEmpty(atRangeIndex: secondGroup) {
             let secondString = match.string(from: secondText, atRangeIndex: secondGroup)
-            let second = NSRegularExpression.isMatch(forPattern: "\\d+", in: secondString) ? Int(secondString)! : ZHStringToNumber(text: secondString)
+            let second = NSRegularExpression.isMatch(forPattern: "\\d+", in: secondString) ? (Int(secondString) ?? 0) : ZHStringToNumber(text: secondString)
             
             if second >= 60 {
                 return nil
@@ -291,18 +291,18 @@ public class ZHTimeExpressionParser: Parser {
         }
         
         hourString = match.string(from: secondText, atRangeIndex: hourGroup)
-        hour = NSRegularExpression.isMatch(forPattern: "\\d+", in: hourString) ? Int(hourString)! : ZHStringToNumber(text: hourString)
-        
+        hour = NSRegularExpression.isMatch(forPattern: "\\d+", in: hourString) ? (Int(hourString) ?? 0) : ZHStringToNumber(text: hourString)
+
         // ----- Minutes
         if match.isNotEmpty(atRangeIndex: minuteGroup) {
             let minuteString = match.string(from: secondText, atRangeIndex: minuteGroup)
-            
+
             if minuteString == "半" {
                 minute = 30
             } else if minuteString == "正" || minuteString == "整" {
                 minute = 0
             } else {
-                minute = NSRegularExpression.isMatch(forPattern: "\\d+", in: minuteString) ? Int(minuteString)! : ZHStringToNumber(text: minuteString)
+                minute = NSRegularExpression.isMatch(forPattern: "\\d+", in: minuteString) ? (Int(minuteString) ?? 0) : ZHStringToNumber(text: minuteString)
             }
         } else if hour > 100 {
             minute = hour % 100;
@@ -351,8 +351,8 @@ public class ZHTimeExpressionParser: Parser {
                 } else {
                     result.start.imply(.meridiem, to: 1)
                     
-                    if result.start[.hour] != 12 {
-                        result.start.assign(.hour, value: result.start[.hour]! + 12)
+                    if let startHour = result.start[.hour], startHour != 12 {
+                        result.start.assign(.hour, value: startHour + 12)
                     }
                 }
             }
@@ -408,7 +408,7 @@ public class ZHTimeExpressionParser: Parser {
             result.end!.assign(.meridiem, value: meridiem)
         } else {
             let startAtPM = result.start.isCertain(component: .meridiem) && result.start[.meridiem] == 1
-            if startAtPM && result.start[.hour]! > hour {
+            if startAtPM && (result.start[.hour] ?? 0) > hour {
                 // 10pm - 1 (am)
                 result.end!.imply(.meridiem, to: 0)
                 
@@ -417,8 +417,8 @@ public class ZHTimeExpressionParser: Parser {
             }
         }
         
-        if (result.end!.date.timeIntervalSince1970 < result.start.date.timeIntervalSince1970) {
-            result.end!.imply(.day, to: result.end![.day]! + 1)
+        if result.end!.date.timeIntervalSince1970 < result.start.date.timeIntervalSince1970, let day = result.end?[.day] {
+            result.end?.imply(.day, to: day + 1)
         }
         
         return result;

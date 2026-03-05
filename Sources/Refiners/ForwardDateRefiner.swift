@@ -29,10 +29,12 @@ class ForwardDateRefiner: Refiner {
                     if !refMoment.isAfter(result.start.moment) {
                         break
                     }
-                    
-                    result.start.imply(.year, to: result.start[.year]! + 1)
-                    if result.end != nil && !result.end!.isCertain(component: .year) {
-                        result.end!.imply(.year, to: result.end![.year]! + 1)
+
+                    if let year = result.start[.year] {
+                        result.start.imply(.year, to: year + 1)
+                    }
+                    if result.end != nil && !result.end!.isCertain(component: .year), let endYear = result.end?[.year] {
+                        result.end?.imply(.year, to: endYear + 1)
                     }
                 }
                 
@@ -44,7 +46,7 @@ class ForwardDateRefiner: Refiner {
                 refMoment.isAfter(result.start.moment)
             {
                 // Adjust date to the coming week
-                let weekday = result.start[.weekday]!
+                guard let weekday = result.start[.weekday] else { continue }
                 refMoment = refMoment.setOrAdded(refMoment.weekday > weekday ? weekday + 7 : weekday, .weekday)
                 
                 result.start.imply(.day, to: refMoment.day)

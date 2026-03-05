@@ -42,7 +42,8 @@ public class FRDeadlineFormatParser: Parser {
         } else if NSRegularExpression.isMatch(forPattern: "demi-?", in: numberText) {
             number = HALF
         } else {
-            number = Int(numberText)!
+            guard let n = Int(numberText) else { return nil }
+            number = n
         }
         
         var date = ref

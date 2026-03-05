@@ -41,7 +41,8 @@ public class ENRelativeDateFormatParser: Parser {
         } else if NSRegularExpression.isMatch(forPattern: "half", in: numberText) {
             number = HALF
         } else {
-            number = Int(numberText)!
+            guard let n = Int(numberText) else { return nil }
+            number = n
         }
         
         let isHalf = number == HALF

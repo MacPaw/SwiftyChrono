@@ -80,8 +80,8 @@ public struct ParsedComponents {
     }
     
     public subscript(component: ComponentUnit) -> Int? {
-        if knownValues.keys.contains(component) { return knownValues[component]! }
-        if impliedValues.keys.contains(component) { return impliedValues[component]! }
+        if knownValues.keys.contains(component) { return knownValues[component] }
+        if impliedValues.keys.contains(component) { return impliedValues[component] }
         
         return nil
     }
@@ -108,10 +108,10 @@ public struct ParsedComponents {
     public func isPossibleDate() -> Bool {
         var date = moment
         var isUTC = false
-        if isCertain(component: .timeZoneOffset) {
+        if isCertain(component: .timeZoneOffset), let tzOffset = self[.timeZoneOffset] {
             // iOS only: in moment.js lib, set utcOffset will turn on isUTC, so the getter will count on utc based time zone
             isUTC = true
-            date.utcOffset = self[.timeZoneOffset]!
+            date.utcOffset = tzOffset
         }
         
         if (isUTC ? date.utcYear : date.year) != self[.year] { return false }
@@ -162,7 +162,7 @@ public struct ParsedComponents {
         
         let currenttimeZoneOffset = date.utcOffset
         let targettimeZoneOffset =
-            isCertain(component: .timeZoneOffset) ? self[.timeZoneOffset]! : currenttimeZoneOffset
+            isCertain(component: .timeZoneOffset) ? (self[.timeZoneOffset] ?? currenttimeZoneOffset) : currenttimeZoneOffset
         
         let adjustedtimeZoneOffset = targettimeZoneOffset - currenttimeZoneOffset
         let newDate = date.added(-adjustedtimeZoneOffset, .minute)

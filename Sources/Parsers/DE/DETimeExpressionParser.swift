@@ -83,12 +83,14 @@ public class DETimeExpressionParser: Parser {
             meridiem = 0
             hour = 0
         } else {
-            hour = Int(hourText)!
+            guard let h = Int(hourText) else { return nil }
+            hour = h
         }
-        
+
         // ----- Minutes
         if match.isNotEmpty(atRangeIndex: minuteGroup) {
-            minute = Int(match.string(from: text, atRangeIndex: minuteGroup))!
+            guard let m = Int(match.string(from: text, atRangeIndex: minuteGroup)) else { return nil }
+            minute = m
         } else if hour > 100 {
             minute = hour % 100
             hour = hour/100
@@ -163,19 +165,21 @@ public class DETimeExpressionParser: Parser {
         
         // ----- Second
         if match.isNotEmpty(atRangeIndex: secondGroup) {
-            let second = Int(match.string(from: secondText, atRangeIndex: secondGroup))!
+            guard let second = Int(match.string(from: secondText, atRangeIndex: secondGroup)) else { return nil }
             if second >= 60 {
                 return nil
             }
-            
+
             result.end?.assign(.second, value: second)
         }
-        
-        hour = Int(match.string(from: secondText, atRangeIndex: hourGroup))!
-        
+
+        guard let endHour = Int(match.string(from: secondText, atRangeIndex: hourGroup)) else { return result }
+        hour = endHour
+
         // ----- Minute
         if match.isNotEmpty(atRangeIndex: minuteGroup) {
-            minute = Int(match.string(from: secondText, atRangeIndex: minuteGroup))!
+            guard let m = Int(match.string(from: secondText, atRangeIndex: minuteGroup)) else { return result }
+            minute = m
             if minute >= 60 {
                 return result
             }
@@ -203,8 +207,8 @@ public class DETimeExpressionParser: Parser {
                 meridiem = 0
                 if hour == 12 {
                     hour = 0
-                    if !result.end!.isCertain(component: .day) {
-                        result.end!.imply(.day, to: result.end![.day]! + 1)
+                    if !result.end!.isCertain(component: .day), let day = result.end?[.day] {
+                        result.end?.imply(.day, to: day + 1)
                     }
                 }
             }
@@ -239,8 +243,8 @@ public class DETimeExpressionParser: Parser {
         if meridiem >= 0 {
             result.end!.assign(.meridiem, value: meridiem)
         } else {
-            let startAtPm = result.start.isCertain(component: .meridiem) && result.start[.meridiem]! == 1
-            if startAtPm && result.start[.hour]! > hour {
+            let startAtPm = result.start.isCertain(component: .meridiem) && result.start[.meridiem] == 1
+            if startAtPm && (result.start[.hour] ?? 0) > hour {
                 // 10pm - 1 (am)
                 result.end!.imply(.meridiem, to: 0)
             } else if hour > 12 {
@@ -248,9 +252,8 @@ public class DETimeExpressionParser: Parser {
             }
         }
         
-        if result.end!.date.timeIntervalSince1970 < result.start.date.timeIntervalSince1970 {
-						let to = result.end![.day]! + 1
-						result.end?.imply(.day, to: to)
+        if result.end!.date.timeIntervalSince1970 < result.start.date.timeIntervalSince1970, let day = result.end?[.day] {
+            result.end?.imply(.day, to: day + 1)
         }
         
         return result

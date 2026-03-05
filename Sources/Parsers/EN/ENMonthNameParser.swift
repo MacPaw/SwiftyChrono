@@ -28,11 +28,11 @@ public class ENMonthNameParser: Parser {
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
         let monthValue = match.string(from: text, atRangeIndex: monthNameGroup).trimmingCharacters(in: .whitespaces)
-        let month = EN_MONTH_OFFSET[monthValue.lowercased()]!
+        guard let month = EN_MONTH_OFFSET[monthValue.lowercased()] else { return nil }
         let day = 1
         
         if match.isNotEmpty(atRangeIndex: yearGroup) {
-            var year = Int(match.string(from: text, atRangeIndex: yearGroup))!
+            guard var year = Int(match.string(from: text, atRangeIndex: yearGroup)) else { return nil }
             
             if match.isNotEmpty(atRangeIndex: yearBeGroup) {
                 let yearBe = match.string(from: text, atRangeIndex: yearBeGroup)
