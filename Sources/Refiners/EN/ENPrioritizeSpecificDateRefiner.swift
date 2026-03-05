@@ -45,12 +45,12 @@ private func isAbleToMerge(text: String, previousResult: ParsedResult, currentRe
     // If both years are certain, that determines if they refer to the same date
     // but with one more specific than the other
     if previousResult.start.isCertain(component: .year) && currentResult.start.isCertain(component: .year) {
-        referToSameDate = previousResult.start[.year]! == currentResult.start[.year]
+        referToSameDate = previousResult.start[.year] == currentResult.start[.year]
     }
     
     // We now test with the next level (month) if they refer to the same date
     if previousResult.start.isCertain(component: .month) && currentResult.start.isCertain(component: .month) {
-        referToSameDate = previousResult.start[.month]! == currentResult.start[.month] && referToSameDate
+        referToSameDate = previousResult.start[.month] == currentResult.start[.month] && referToSameDate
     }
     
     return includesRelativeResult && NSRegularExpression.isMatch(forPattern: PATTERN, in: textBetween) && referToSameDate

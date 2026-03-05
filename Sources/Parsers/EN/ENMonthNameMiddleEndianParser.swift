@@ -44,15 +44,17 @@ public class ENMonthNameMiddleEndianParser: Parser {
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
         let monthValue = match.string(from: text, atRangeIndex: monthNameGroup).trimmingCharacters(in: .whitespaces)
-        let month = EN_MONTH_OFFSET[monthValue.lowercased()]!
+        guard let month = EN_MONTH_OFFSET[monthValue.lowercased()] else { return nil }
         
         let day = match.isNotEmpty(atRangeIndex: dateNumGroup) ?
-            Int(match.string(from: text, atRangeIndex: dateNumGroup))! :
-            EN_ORDINAL_WORDS[match.string(from: text, atRangeIndex: dateGroup).replacingOccurrences(of: "-", with: " ").lowercased()]!
+            Int(match.string(from: text, atRangeIndex: dateNumGroup)) :
+            EN_ORDINAL_WORDS[match.string(from: text, atRangeIndex: dateGroup).replacingOccurrences(of: "-", with: " ").lowercased()]
+        
+        guard let day else { return nil }
         
         let yearGroupNotEmpty = match.isNotEmpty(atRangeIndex: yearGroup)
         if yearGroupNotEmpty || match.isNotEmpty(atRangeIndex: yearGroup2) {
-            var year = Int(match.string(from: text, atRangeIndex: yearGroupNotEmpty ? yearGroup : yearGroup2))!
+            guard var year = Int(match.string(from: text, atRangeIndex: yearGroupNotEmpty ? yearGroup : yearGroup2)) else { return nil }
             
             let yearBE = match.isNotEmpty(atRangeIndex: yearBeGroup) ? match.string(from: text, atRangeIndex: yearBeGroup) : match.isNotEmpty(atRangeIndex: yearBeGroup2) ? match.string(from: text, atRangeIndex: yearBeGroup2) : ""
             if !yearBE.isEmpty {

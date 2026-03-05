@@ -39,8 +39,14 @@ class ExtractTimezoneOffsetRefiner: Refiner {
                 continue
             }
             
-            let hourOffset = Int(match.string(from: substring, atRangeIndex: timezoneOffsetHourOffset))!
-            let minuteOffset = Int(match.string(from: substring, atRangeIndex: timezoneOffsetMinuteOffsetGroup))!
+            guard
+                let hourOffset = Int(match.string(from: substring, atRangeIndex: timezoneOffsetHourOffset)),
+                let minuteOffset = Int(match.string(from: substring, atRangeIndex: timezoneOffsetMinuteOffsetGroup))
+            else {
+                i += 1
+                newResults.append(result)
+                continue
+            }
             var timezoneOffset = hourOffset * 60 + minuteOffset
             
             if match.string(from: substring, atRangeIndex: timezoneOffsetSignGroup) == "-" {

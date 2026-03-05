@@ -41,14 +41,15 @@ public class DEMonthNameLittleEndianParser: Parser {
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
         let monthValue = match.string(from: text, atRangeIndex: monthNameGroup).trimmingCharacters(in: .whitespaces)
-        let month = DE_MONTH_OFFSET[monthValue.lowercased()]!
+        guard let month = DE_MONTH_OFFSET[monthValue.lowercased()] else { return nil }
         
         let day = match.isNotEmpty(atRangeIndex: dateNumGroup) ?
-            Int(match.string(from: text, atRangeIndex: dateNumGroup))! :
-            DE_ORDINAL_WORDS[match.string(from: text, atRangeIndex: dateGroup).trimmed().lowercased()]!
+            Int(match.string(from: text, atRangeIndex: dateNumGroup)) :
+            DE_ORDINAL_WORDS[match.string(from: text, atRangeIndex: dateGroup).trimmed().lowercased()]
+        guard let day else { return nil }
         
         if match.isNotEmpty(atRangeIndex: yearGroup) {
-            var year = Int(match.string(from: text, atRangeIndex: yearGroup))!
+            guard var year = Int(match.string(from: text, atRangeIndex: yearGroup)) else { return nil }
             
             if match.isNotEmpty(atRangeIndex: yearBeGroup) {
                 let yearBe = match.string(from: text, atRangeIndex: yearBeGroup)

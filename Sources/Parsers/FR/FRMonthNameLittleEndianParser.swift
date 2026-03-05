@@ -32,12 +32,11 @@ public class FRMonthNameLittleEndianParser: Parser {
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
         let monthValue = match.string(from: text, atRangeIndex: monthNameGroup).trimmingCharacters(in: .whitespaces)
-        let month = FR_MONTH_OFFSET[monthValue.lowercased()]!
-        
-        let day = Int(match.string(from: text, atRangeIndex: dateGroup).replacingOccurrences(of: "er", with: ""))!
+        guard let month = FR_MONTH_OFFSET[monthValue.lowercased()] else { return nil }
+        guard let day = Int(match.string(from: text, atRangeIndex: dateGroup).replacingOccurrences(of: "er", with: "")) else { return nil }
         
         if match.isNotEmpty(atRangeIndex: yearGroup) {
-            var year = Int(match.string(from: text, atRangeIndex: yearGroup).trimmed())!
+            guard var year = Int(match.string(from: text, atRangeIndex: yearGroup).trimmed()) else { return nil }
             
             if match.isNotEmpty(atRangeIndex: yearBeGroup) {
                 let yearBe = match.string(from: text, atRangeIndex: yearBeGroup)
@@ -82,7 +81,7 @@ public class FRMonthNameLittleEndianParser: Parser {
         // Text can be 'range' value. Such as '12 - 13 janvier 2012'
         if match.isNotEmpty(atRangeIndex: dateToGroup) {
             result.end = result.start.clone()
-            result.end?.assign(.day, value: Int(match.string(from: text, atRangeIndex: dateToGroup))!)
+            result.end?.assign(.day, value: Int(match.string(from: text, atRangeIndex: dateToGroup)))
         }
         
         result.tags[.frMonthNameLittleEndianParser] = true
