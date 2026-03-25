@@ -9,8 +9,8 @@
 import Foundation
 
 private let PATTERN = "(\\W|^)" +
-    "(next|last|past)\\s*" +
-    "(\(EN_INTEGER_WORDS_PATTERN)|[0-9]+|few|half(?:\\s*an?)?)?\\s*" +
+    "(next|last|past)\\s+" +
+    "(\(EN_INTEGER_WORDS_PATTERN)|[0-9]+|few|half(?:\\s*an?)?)\\s+" +
     "(seconds?|min(?:ute)?s?|hours?|days?|weeks?|months?|years?)(?=\\s*)" +
     "(?=\\W|$)"
 

@@ -99,6 +99,7 @@ public func casualModeOption() -> ModeOptio {
         ENCasualDateParser(strictMode: false),
         ENWeekdayParser(strictMode: false),
         ENRelativeDateFormatParser(strictMode: false),
+        ENRelativeDateRangeFormatParser(strictMode: false),
         
         // JP
         JPCasualDateParser(strictMode: false),
